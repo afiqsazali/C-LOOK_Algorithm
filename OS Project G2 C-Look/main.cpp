@@ -9,12 +9,13 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<vector>
+#include<algorithm>
 
 using namespace std;
 
 int main(){
 
-    int i,k,num_req,disk_size,sum = 0,head;
+    int i,k,num_req,disk_size,sum = 0,head,up_down;
 
     cout << "Enter the size of disk\n";				//prompt the user to enter the disk size
     cin >> disk_size;
@@ -23,21 +24,21 @@ int main(){
     cin >> num_req;
 
     cout << "Enter the requests\n";					//prompt the user to enter the values of those total page request given
-    vector <int> a(num_req),l;							//then will create vector of array a and 1
+    vector <int> a(num_req),l;						//then will create vector of array a and 1
 
-    for(i=0;i<num_req;i++){								//for loop will enter the value of the requests into the array until the maximum given number of request
+    for(i=0;i<num_req;i++){							//for loop will enter the value of the requests into the array until the maximum given number of request
 
     	cin >> a[i];
 
     }
 
-    for(i=0;i<num_req;i++) {
+    for(i=0;i<num_req;i++) {						//debugging time
 
-    	cout << a[i] << " \n";
+    	cout << a[i] << "\n";
 
     }
 
-    for(i=0;i<num_req;i++){								//this loop will check if the given values of the request are valid, if the values are above the size of disk
+    for(i=0;i<num_req;i++){							//this loop will check if the given values of the request are valid, if the values are above the size of disk
     												//then it will prompt the user that is it an invalid value and exit the program
     	if(a[i]>disk_size || a[i]<0){
 
@@ -69,12 +70,65 @@ int main(){
 
     for (i=0;i<a.size();i++){						//for loop will count the number of jumps from the beginning of array a to the head
 
-    	if (head==a[i])
+    	if (head == a[i])
             break;
 
     }
 
     k=i;											//
+    cout << "k= " << k << "\n";
+
+    cout << "Direction(1 for UP,2 for DOWN): ";
+    cin >> up_down;
+
+    while(1) {
+
+		if (up_down > 2 || up_down < 1) {
+
+			cout << "Head out of Bounds, Enter direction again: ";
+			cin >> up_down;
+
+		}
+		else
+			break;
+
+	}
+
+    switch(up_down) {
+
+		case 1: {
+			for (i=k;i<a.size();i++){
+
+				l.push_back(a[i]);
+
+			}
+
+			for (i=0;i<k;i++){
+
+				l.push_back(a[i]);
+
+			}
+			break;
+		}
+
+		case 2: {
+			for (i=k;i>=0;i--){
+
+				l.push_back(a[i]);
+
+			}
+
+			for (i=a.size()-1;i>k;i--){
+
+				l.push_back(a[i]);
+
+			}
+			break;
+		}
+
+    }
+
+    /*
     if(k<num_req/2){
 
     	for (i=k;i<a.size();i++){
@@ -103,7 +157,7 @@ int main(){
 
         }
 
-    }
+    }*/
 
     int temp = l[0];
 
