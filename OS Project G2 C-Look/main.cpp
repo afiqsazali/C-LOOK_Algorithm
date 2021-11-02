@@ -14,7 +14,7 @@ using namespace std;
 
 int main(){
 
-    int i,j,k,n,m,sum=0,x,y,h;
+    int i,j,k,n,m,sum = 0,x,y,h;
 
     cout << "Enter the size of disk\n";
     cin >> m;
@@ -59,22 +59,29 @@ int main(){
     if(k<n/2){
 
     	for(i=k;i<a.size();i++){
+
             l.push_back(a[i]);
+
         }
 
         for(i=0;i<k;i++){
+
             l.push_back(a[i]);
+
         }
 
-    }
-    else{
+    } else{
 
     	for(i=k;i>=0;i--){
+
             l.push_back(a[i]);
+
         }
 
         for(i=a.size()-1;i>k;i--){
+
             l.push_back(a[i]);
+
         }
 
     }
@@ -86,13 +93,13 @@ int main(){
     for(i=1;i<l.size();i++){
 
     	cout<<" -> "<<l[i]<<' ';
-        sum+=abs(l[i]-temp);
-        temp=a[i];
+        sum += abs(l[i]-temp);
+        temp = a[i];
 
     }
 
     cout<<'\n';
-    cout<<"Total head movements = "<< sum<<'\n';
+    cout<<"Total head movements = "<<sum<<'\n';
     return 0;
 
 }
