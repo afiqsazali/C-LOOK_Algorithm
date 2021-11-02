@@ -2,7 +2,7 @@
  * main.cpp
  *
  *  Created on: 2 Nov 2021
- *      Author: afiqsazali
+ *      Author: afiqsazali and farissyazwan
  */
 
 #include<iostream>
@@ -15,7 +15,8 @@ using namespace std;
 
 int main(){
 
-    int i,k,num_req,disk_size,sum = 0,head,up_down;
+    int i,k,num_req,disk_size,sum = 0,track_trav = 0, head;
+    string dir;
 
     cout << "Enter the size of disk\n";				//prompt the user to enter the disk size
     cin >> disk_size;
@@ -32,11 +33,11 @@ int main(){
 
     }
 
-    for(i=0;i<num_req;i++) {						//debugging time
+   /* for(i=0;i<num_req;i++) {
 
-    	cout << a[i] << "\n";
+    	cout << a[i] << " \n";
 
-    }
+    } */
 
     for(i=0;i<num_req;i++){							//this loop will check if the given values of the request are valid, if the values are above the size of disk
     												//then it will prompt the user that is it an invalid value and exit the program
@@ -70,109 +71,87 @@ int main(){
 
     for (i=0;i<a.size();i++){						//for loop will count the number of jumps from the beginning of array a to the head
 
-    	if (head == a[i])
+    	if (head==a[i])
             break;
 
     }
 
-    k=i;											//
-    cout << "k= " << k << "\n";
+    k=i;
+   // cout << '"\n';
+    //
 
-    cout << "Direction(1 for UP,2 for DOWN): ";
+    int up_down;
+
+    cout << "Choose arm direction ( 1 for count up, 2 for count down ) : ";
     cin >> up_down;
 
-    while(1) {
-
-		if (up_down > 2 || up_down < 1) {
-
-			cout << "Head out of Bounds, Enter direction again: ";
-			cin >> up_down;
-
-		}
-		else
-			break;
-
-	}
-
     switch(up_down) {
+        case 1: {
 
-		case 1: {
-			for (i=k;i<a.size();i++){
+    	    for (i=k;i<a.size();i++){
 
-				l.push_back(a[i]);
+                l.push_back(a[i]);
 
-			}
+            }
 
-			for (i=0;i<k;i++){
+            for (i=0;i<k;i++){
 
-				l.push_back(a[i]);
+                l.push_back(a[i]);
 
-			}
-			break;
-		}
+            }
 
-		case 2: {
-			for (i=k;i>=0;i--){
+            dir = "OUT";
 
-				l.push_back(a[i]);
+            break;
 
-			}
+        }
 
-			for (i=a.size()-1;i>k;i--){
+        case 2: {
 
-				l.push_back(a[i]);
+        	for (i=k;i>=0;i--){
 
-			}
-			break;
-		}
+                l.push_back(a[i]);
+
+            }
+
+            for (i=a.size()-1;i>k;i--){
+
+                l.push_back(a[i]);
+
+            }
+
+            dir = "IN";
+
+            break;
+
+        }
 
     }
 
-    /*
-    if(k<num_req/2){
+    cout << "================================================ \n" ;
+    cout << "Initial ARM position = " << head << "\t Direction : " << dir <<"\n\n";
 
-    	for (i=k;i<a.size();i++){
-
-            l.push_back(a[i]);
-
-        }
-
-        for (i=0;i<k;i++){
-
-            l.push_back(a[i]);
-
-        }
-
-    } else {
-
-    	for (i=k;i>=0;i--){
-
-            l.push_back(a[i]);
-
-        }
-
-        for (i=a.size()-1;i>k;i--){
-
-            l.push_back(a[i]);
-
-        }
-
-    }*/
-
-    int temp = l[0];
-
-    cout << temp;
+    cout << l[0] ;
 
     for (i=1;i<l.size();i++){
 
     	cout << " -> " << l[i] << ' ';
-        sum += abs(l[i]-temp);
-        temp = a[i];
+        sum += abs(l[i]-l[i-1]);
+
+    }
+
+    cout << "\n\n";
+    cout << "Track travelled : ";
+
+    for (i=1;i<l.size();i++){
+
+        track_trav = abs(l[i]-l[i-1]);
+        cout << track_trav <<" || ";
 
     }
 
     cout << '\n';
-    cout << "Total head movements = " << sum << '\n';
+    cout << "Total track travelled = " << sum << '\n';
     return 0;
 
 }
