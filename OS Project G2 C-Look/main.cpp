@@ -5,13 +5,6 @@
  *      Author: afiqsazali
  */
 
-/*
- * main.cpp
- *
- *  Created on: 2 Nov 2021
- *      Author: afiqsazali
- */
-
 #include<iostream>
 #include<stdio.h>
 #include<stdlib.h>
