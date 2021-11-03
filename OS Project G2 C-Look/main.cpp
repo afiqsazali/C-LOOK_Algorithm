@@ -76,13 +76,11 @@ int main(){
 
     }
 
-    k=i;
-   // cout << '"\n';
-    //
+    k = i;
 
     int up_down;
 
-    cout << "Choose arm direction ( 1 for count up, 2 for count down ) : ";
+    cout << "Choose arm direction (1 for count up, 2 for count down) : ";
     cin >> up_down;
 
     switch(up_down) {
